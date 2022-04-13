@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153936",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "academic_batch",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "academicStartYear",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "academicEndYear",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AcademicBatch",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "session",
+      "otherEntityRelationshipName": "academicBatch",
+      "relationshipName": "session",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "academicBatch",
+      "relationshipName": "student",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "branch",
+      "otherEntityRelationshipName": "academicBatch",
+      "relationshipName": "branch",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

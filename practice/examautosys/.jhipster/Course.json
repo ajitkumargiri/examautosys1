@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153934",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "course",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "detals",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Course",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "branch",
+      "otherEntityRelationshipName": "course",
+      "relationshipName": "branch",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "college",
+      "otherEntityRelationshipName": "course",
+      "relationshipName": "college",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,340 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-student-heading" data-cy="StudentCreateUpdateHeading">Create or edit a Student</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_regNumber">Reg Number</label>
+          <input type="text" class="form-control" name="regNumber" id="field_regNumber" data-cy="regNumber" formControlName="regNumber" />
+          <div *ngIf="editForm.get('regNumber')!.invalid && (editForm.get('regNumber')!.dirty || editForm.get('regNumber')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+          <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('firstName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_middleName">Middle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="middleName"
+            id="field_middleName"
+            data-cy="middleName"
+            formControlName="middleName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+          <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('lastName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dob">Dob</label>
+          <div class="d-flex">
+            <input
+              id="field_dob"
+              data-cy="dob"
+              type="datetime-local"
+              class="form-control"
+              name="dob"
+              formControlName="dob"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fatherName">Father Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fatherName"
+            id="field_fatherName"
+            data-cy="fatherName"
+            formControlName="fatherName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_motherName">Mother Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motherName"
+            id="field_motherName"
+            data-cy="motherName"
+            formControlName="motherName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_mobileNumber">Mobile Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="mobileNumber"
+            id="field_mobileNumber"
+            data-cy="mobileNumber"
+            formControlName="mobileNumber"
+          />
+          <div
+            *ngIf="editForm.get('mobileNumber')!.invalid && (editForm.get('mobileNumber')!.dirty || editForm.get('mobileNumber')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('mobileNumber')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nationality">Nationality</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nationality"
+            id="field_nationality"
+            data-cy="nationality"
+            formControlName="nationality"
+          />
+          <div *ngIf="editForm.get('nationality')!.invalid && (editForm.get('nationality')!.dirty || editForm.get('nationality')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nationality')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let gender of genderValues" [value]="gender">gender</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_religion">Religion</label>
+          <input type="text" class="form-control" name="religion" id="field_religion" data-cy="religion" formControlName="religion" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_catagory">Catagory</label>
+          <input type="text" class="form-control" name="catagory" id="field_catagory" data-cy="catagory" formControlName="catagory" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_maritialStatus">Maritial Status</label>
+          <select
+            class="form-control"
+            name="maritialStatus"
+            formControlName="maritialStatus"
+            id="field_maritialStatus"
+            data-cy="maritialStatus"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let maritialStatus of maritialStatusValues" [value]="maritialStatus">maritialStatus</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_adharNumber">Adhar Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="adharNumber"
+            id="field_adharNumber"
+            data-cy="adharNumber"
+            formControlName="adharNumber"
+          />
+          <div *ngIf="editForm.get('adharNumber')!.invalid && (editForm.get('adharNumber')!.dirty || editForm.get('adharNumber')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('adharNumber')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bloodGroup">Blood Group</label>
+          <select class="form-control" name="bloodGroup" formControlName="bloodGroup" id="field_bloodGroup" data-cy="bloodGroup">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let bloodGroup of bloodGroupValues" [value]="bloodGroup">bloodGroup</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fatherMobileNumber">Father Mobile Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fatherMobileNumber"
+            id="field_fatherMobileNumber"
+            data-cy="fatherMobileNumber"
+            formControlName="fatherMobileNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fatherEmailId">Father Email Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fatherEmailId"
+            id="field_fatherEmailId"
+            data-cy="fatherEmailId"
+            formControlName="fatherEmailId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_image">Image</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('imageContentType')!.value + ';base64,' + editForm.get('image')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('image')!.value"
+              alt="student image"
+            />
+            <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start">{{ editForm.get('imageContentType')!.value }}, {{ byteSize(editForm.get('image')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('image', 'imageContentType', 'file_image')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_image" data-cy="image" (change)="setFileData($event, 'image', true)" accept="image/*" />
+          </div>
+          <input type="hidden" class="form-control" name="image" id="field_image" data-cy="image" formControlName="image" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageContentType"
+            id="field_imageContentType"
+            formControlName="imageContentType"
+          />
+          <div *ngIf="editForm.get('image')!.invalid && (editForm.get('image')!.dirty || editForm.get('image')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_signature">Signature</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('signatureContentType')!.value + ';base64,' + editForm.get('signature')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('signature')!.value"
+              alt="student image"
+            />
+            <div *ngIf="editForm.get('signature')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('signatureContentType')!.value }}, {{ byteSize(editForm.get('signature')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('signature', 'signatureContentType', 'file_signature')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_signature" data-cy="signature" (change)="setFileData($event, 'signature', true)" accept="image/*" />
+          </div>
+          <input type="hidden" class="form-control" name="signature" id="field_signature" data-cy="signature" formControlName="signature" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="signatureContentType"
+            id="field_signatureContentType"
+            formControlName="signatureContentType"
+          />
+          <div *ngIf="editForm.get('signature')!.invalid && (editForm.get('signature')!.dirty || editForm.get('signature')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_adhar">Adhar</label>
+          <div>
+            <div *ngIf="editForm.get('adhar')!.value" class="form-text text-danger clearfix">
+              <a class="pull-start" (click)="openFile(editForm.get('adhar')!.value, editForm.get('adharContentType')!.value)">open</a><br />
+              <span class="pull-start">{{ editForm.get('adharContentType')!.value }}, {{ byteSize(editForm.get('adhar')!.value) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ adhar: null }); editForm.patchValue({ adharContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_adhar" data-cy="adhar" (change)="setFileData($event, 'adhar', false)" />
+          </div>
+          <input type="hidden" class="form-control" name="adhar" id="field_adhar" data-cy="adhar" formControlName="adhar" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="adharContentType"
+            id="field_adharContentType"
+            formControlName="adharContentType"
+          />
+          <div *ngIf="editForm.get('adhar')!.invalid && (editForm.get('adhar')!.dirty || editForm.get('adhar')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_academicBatch">Academic Batch</label>
+          <select
+            class="form-control"
+            id="field_academicBatch"
+            data-cy="academicBatch"
+            name="academicBatch"
+            formControlName="academicBatch"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                academicBatchOption.id === editForm.get('academicBatch')!.value?.id
+                  ? editForm.get('academicBatch')!.value
+                  : academicBatchOption
+              "
+              *ngFor="let academicBatchOption of academicBatchesSharedCollection; trackBy: trackAcademicBatchById"
+            >
+              {{ academicBatchOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

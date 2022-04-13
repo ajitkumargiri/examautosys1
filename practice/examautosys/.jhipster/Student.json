@@ -1,0 +1,135 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153938",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "student",
+  "fields": [
+    {
+      "fieldName": "regNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "middleName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dob",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "fatherName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "motherName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "mobileNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nationality",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "MALE (Male),FEMALE (Female),OTHER (Other)"
+    },
+    {
+      "fieldName": "religion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "catagory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "maritialStatus",
+      "fieldType": "MaritialStatus",
+      "fieldValues": "MARRIED (Married),UNMARRIED (Unmarried)"
+    },
+    {
+      "fieldName": "adharNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "bloodGroup",
+      "fieldType": "BloodGroup",
+      "fieldValues": "O_POS (O+),O_NEG (O-),A_POS (A+),A_NEG (A-),B_POS (B+),B_NEG (B-),AB_POS (AB+),AB_NEG (AB-),NO_ANSWER (NA)"
+    },
+    {
+      "fieldName": "fatherMobileNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fatherEmailId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["minbytes", "maxbytes"],
+      "fieldValidateRulesMaxbytes": "300",
+      "fieldValidateRulesMinbytes": "20"
+    },
+    {
+      "fieldName": "signature",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["minbytes", "maxbytes"],
+      "fieldValidateRulesMaxbytes": "300",
+      "fieldValidateRulesMinbytes": "20"
+    },
+    {
+      "fieldName": "adhar",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any",
+      "fieldValidateRules": ["minbytes", "maxbytes"],
+      "fieldValidateRulesMaxbytes": "300",
+      "fieldValidateRulesMinbytes": "20"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Student",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "examApplicationForm",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "examApplicationForm",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "academicBatch",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "academicBatch",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="ExamCenterHeading">
+    <span>Exam Centers</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-exam-center"
+        [routerLink]="['/exam-center/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Exam Center </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="examCenters?.length === 0">
+    <span>No examCenters found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="examCenters && examCenters.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Name</span></th>
+          <th scope="col"><span>Code</span></th>
+          <th scope="col"><span>Address</span></th>
+          <th scope="col"><span>Exam</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let examCenter of examCenters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/exam-center', examCenter.id, 'view']">{{ examCenter.id }}</a>
+          </td>
+          <td>{{ examCenter.name }}</td>
+          <td>{{ examCenter.code }}</td>
+          <td>
+            <div *ngIf="examCenter.address">
+              <a [routerLink]="['/address', examCenter.address?.id, 'view']">{{ examCenter.address?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="examCenter.exam">
+              <a [routerLink]="['/exam', examCenter.exam?.id, 'view']">{{ examCenter.exam?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/exam-center', examCenter.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/exam-center', examCenter.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(examCenter)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

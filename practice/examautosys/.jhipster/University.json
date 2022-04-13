@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153932",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "university",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "University",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "university",
+      "ownerSide": true,
+      "relationshipName": "address",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "college",
+      "otherEntityRelationshipName": "university",
+      "relationshipName": "college",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

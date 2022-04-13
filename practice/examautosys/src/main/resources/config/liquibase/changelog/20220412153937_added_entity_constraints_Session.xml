@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Session.
+    -->
+    <changeSet id="20220412153937-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="academic_batch_id"
+                                 baseTableName="session"
+                                 constraintName="fk_session__academic_batch_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="academic_batch"/>
+    </changeSet>
+</databaseChangeLog>

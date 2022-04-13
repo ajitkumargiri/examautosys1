@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="subjectPaper">
+      <h2 data-cy="subjectPaperDetailsHeading"><span>Subject Paper</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ subjectPaper.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ subjectPaper.name }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ subjectPaper.code }}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+          <span>{{ subjectPaper.type }}</span>
+        </dd>
+        <dt><span>Full Mark</span></dt>
+        <dd>
+          <span>{{ subjectPaper.fullMark }}</span>
+        </dd>
+        <dt><span>Pass Mark</span></dt>
+        <dd>
+          <span>{{ subjectPaper.passMark }}</span>
+        </dd>
+        <dt><span>Session</span></dt>
+        <dd>
+          <div *ngIf="subjectPaper.session">
+            <a [routerLink]="['/session', subjectPaper.session?.id, 'view']">{{ subjectPaper.session?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/subject-paper', subjectPaper.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

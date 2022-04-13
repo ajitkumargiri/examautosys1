@@ -48,6 +48,30 @@ public class CacheConfiguration {
             createCache(cm, com.nscs.examautosys.domain.User.class.getName());
             createCache(cm, com.nscs.examautosys.domain.Authority.class.getName());
             createCache(cm, com.nscs.examautosys.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.nscs.examautosys.domain.University.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.University.class.getName() + ".colleges");
+            createCache(cm, com.nscs.examautosys.domain.College.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.College.class.getName() + ".courses");
+            createCache(cm, com.nscs.examautosys.domain.Course.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.Course.class.getName() + ".branches");
+            createCache(cm, com.nscs.examautosys.domain.Branch.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.Branch.class.getName() + ".academicBatches");
+            createCache(cm, com.nscs.examautosys.domain.AcademicBatch.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.AcademicBatch.class.getName() + ".sessions");
+            createCache(cm, com.nscs.examautosys.domain.AcademicBatch.class.getName() + ".students");
+            createCache(cm, com.nscs.examautosys.domain.Session.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.Session.class.getName() + ".exams");
+            createCache(cm, com.nscs.examautosys.domain.Session.class.getName() + ".subjectPapers");
+            createCache(cm, com.nscs.examautosys.domain.Student.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.Student.class.getName() + ".examApplicationForms");
+            createCache(cm, com.nscs.examautosys.domain.Address.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.Exam.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.Exam.class.getName() + ".applicationForms");
+            createCache(cm, com.nscs.examautosys.domain.Exam.class.getName() + ".examCenters");
+            createCache(cm, com.nscs.examautosys.domain.ExamApplicationForm.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.SubjectPaper.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.ExamCenter.class.getName());
+            createCache(cm, com.nscs.examautosys.domain.ExamCenter.class.getName() + ".examApplicationForms");
             // jhipster-needle-ehcache-add-entry
         };
     }

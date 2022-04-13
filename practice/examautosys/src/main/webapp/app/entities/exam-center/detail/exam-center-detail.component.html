@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="examCenter">
+      <h2 data-cy="examCenterDetailsHeading"><span>Exam Center</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ examCenter.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ examCenter.name }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ examCenter.code }}</span>
+        </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+          <div *ngIf="examCenter.address">
+            <a [routerLink]="['/address', examCenter.address?.id, 'view']">{{ examCenter.address?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Exam</span></dt>
+        <dd>
+          <div *ngIf="examCenter.exam">
+            <a [routerLink]="['/exam', examCenter.exam?.id, 'view']">{{ examCenter.exam?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/exam-center', examCenter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

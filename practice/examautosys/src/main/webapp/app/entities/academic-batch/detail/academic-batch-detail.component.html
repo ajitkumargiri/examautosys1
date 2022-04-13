@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="academicBatch">
+      <h2 data-cy="academicBatchDetailsHeading"><span>Academic Batch</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ academicBatch.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ academicBatch.name }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ academicBatch.code }}</span>
+        </dd>
+        <dt><span>Academic Start Year</span></dt>
+        <dd>
+          <span>{{ academicBatch.academicStartYear }}</span>
+        </dd>
+        <dt><span>Academic End Year</span></dt>
+        <dd>
+          <span>{{ academicBatch.academicEndYear }}</span>
+        </dd>
+        <dt><span>Branch</span></dt>
+        <dd>
+          <div *ngIf="academicBatch.branch">
+            <a [routerLink]="['/branch', academicBatch.branch?.id, 'view']">{{ academicBatch.branch?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/academic-batch', academicBatch.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-exam-heading" data-cy="ExamCreateUpdateHeading">Create or edit a Exam</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let examType of examTypeValues" [value]="examType">examType</option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_startTime">Start Time</label>
+          <div class="input-group">
+            <input
+              id="field_startTime"
+              data-cy="startTime"
+              type="text"
+              class="form-control"
+              name="startTime"
+              ngbDatepicker
+              #startTimeDp="ngbDatepicker"
+              formControlName="startTime"
+            />
+            <button type="button" class="btn btn-secondary" (click)="startTimeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_endTime">End Time</label>
+          <div class="input-group">
+            <input
+              id="field_endTime"
+              data-cy="endTime"
+              type="text"
+              class="form-control"
+              name="endTime"
+              ngbDatepicker
+              #endTimeDp="ngbDatepicker"
+              formControlName="endTime"
+            />
+            <button type="button" class="btn btn-secondary" (click)="endTimeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_correspondingAddress">Corresponding Address</label>
+          <select
+            class="form-control"
+            id="field_correspondingAddress"
+            data-cy="correspondingAddress"
+            name="correspondingAddress"
+            formControlName="correspondingAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                addressOption.id === editForm.get('correspondingAddress')!.value?.id
+                  ? editForm.get('correspondingAddress')!.value
+                  : addressOption
+              "
+              *ngFor="let addressOption of correspondingAddressesCollection; trackBy: trackAddressById"
+            >
+              {{ addressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_permanentAddress">Permanent Address</label>
+          <select
+            class="form-control"
+            id="field_permanentAddress"
+            data-cy="permanentAddress"
+            name="permanentAddress"
+            formControlName="permanentAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                addressOption.id === editForm.get('permanentAddress')!.value?.id ? editForm.get('permanentAddress')!.value : addressOption
+              "
+              *ngFor="let addressOption of permanentAddressesCollection; trackBy: trackAddressById"
+            >
+              {{ addressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_session">Session</label>
+          <select class="form-control" id="field_session" data-cy="session" name="session" formControlName="session">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sessionOption.id === editForm.get('session')!.value?.id ? editForm.get('session')!.value : sessionOption"
+              *ngFor="let sessionOption of sessionsSharedCollection; trackBy: trackSessionById"
+            >
+              {{ sessionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

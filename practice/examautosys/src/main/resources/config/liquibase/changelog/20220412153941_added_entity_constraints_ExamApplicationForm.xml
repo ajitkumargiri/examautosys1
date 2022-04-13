@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity ExamApplicationForm.
+    -->
+    <changeSet id="20220412153941-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="corresponding_address_id"
+                                 baseTableName="exam_application_form"
+                                 constraintName="fk_exam_application_form__corresponding_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="exam_application_form"
+                                 constraintName="fk_exam_application_form__student_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="student"/>
+
+        <addForeignKeyConstraint baseColumnNames="exam_id"
+                                 baseTableName="exam_application_form"
+                                 constraintName="fk_exam_application_form__exam_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exam"/>
+
+        <addForeignKeyConstraint baseColumnNames="exam_center_id"
+                                 baseTableName="exam_application_form"
+                                 constraintName="fk_exam_application_form__exam_center_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exam_center"/>
+    </changeSet>
+</databaseChangeLog>

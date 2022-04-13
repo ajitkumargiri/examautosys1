@@ -1,0 +1,167 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="examApplicationForm">
+      <h2 data-cy="examApplicationFormDetailsHeading"><span>Exam Application Form</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.id }}</span>
+        </dd>
+        <dt><span>Reg Number</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.regNumber }}</span>
+        </dd>
+        <dt><span>First Name</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.firstName }}</span>
+        </dd>
+        <dt><span>Middle Name</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.middleName }}</span>
+        </dd>
+        <dt><span>Last Name</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.lastName }}</span>
+        </dd>
+        <dt><span>Dob</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.dob | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Father Name</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.fatherName }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.email }}</span>
+        </dd>
+        <dt><span>Mobile Number</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.mobileNumber }}</span>
+        </dd>
+        <dt><span>Nationality</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.nationality }}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.gender }}</span>
+        </dd>
+        <dt><span>Religion</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.religion }}</span>
+        </dd>
+        <dt><span>Adhar Number</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.adharNumber }}</span>
+        </dd>
+        <dt><span>Blood Group</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.bloodGroup }}</span>
+        </dd>
+        <dt><span>Is Approved</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.isApproved }}</span>
+        </dd>
+        <dt><span>Catagory</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.catagory }}</span>
+        </dd>
+        <dt><span>Identity Type</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.identityType }}</span>
+        </dd>
+        <dt><span>Identity Number</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.identityNumber }}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.image">
+            <a (click)="openFile(examApplicationForm.image, examApplicationForm.imageContentType)">
+              <img
+                [src]="'data:' + examApplicationForm.imageContentType + ';base64,' + examApplicationForm.image"
+                style="max-width: 100%"
+                alt="examApplicationForm image"
+              />
+            </a>
+            {{ examApplicationForm.imageContentType }}, {{ byteSize(examApplicationForm.image) }}
+          </div>
+        </dd>
+        <dt><span>Signature</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.signature">
+            <a (click)="openFile(examApplicationForm.signature, examApplicationForm.signatureContentType)">
+              <img
+                [src]="'data:' + examApplicationForm.signatureContentType + ';base64,' + examApplicationForm.signature"
+                style="max-width: 100%"
+                alt="examApplicationForm image"
+              />
+            </a>
+            {{ examApplicationForm.signatureContentType }}, {{ byteSize(examApplicationForm.signature) }}
+          </div>
+        </dd>
+        <dt><span>Adhar</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.adhar">
+            <a (click)="openFile(examApplicationForm.adhar, examApplicationForm.adharContentType)">open</a>
+            {{ examApplicationForm.adharContentType }}, {{ byteSize(examApplicationForm.adhar) }}
+          </div>
+        </dd>
+        <dt><span>Image Path</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.imagePath }}</span>
+        </dd>
+        <dt><span>Sign Path</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.signPath }}</span>
+        </dd>
+        <dt><span>Adhar Path</span></dt>
+        <dd>
+          <span>{{ examApplicationForm.adharPath }}</span>
+        </dd>
+        <dt><span>Corresponding Address</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.correspondingAddress">
+            <a [routerLink]="['/address', examApplicationForm.correspondingAddress?.id, 'view']">{{
+              examApplicationForm.correspondingAddress?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Student</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.student">
+            <a [routerLink]="['/student', examApplicationForm.student?.id, 'view']">{{ examApplicationForm.student?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Exam</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.exam">
+            <a [routerLink]="['/exam', examApplicationForm.exam?.id, 'view']">{{ examApplicationForm.exam?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Exam Center</span></dt>
+        <dd>
+          <div *ngIf="examApplicationForm.examCenter">
+            <a [routerLink]="['/exam-center', examApplicationForm.examCenter?.id, 'view']">{{ examApplicationForm.examCenter?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/exam-application-form', examApplicationForm.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

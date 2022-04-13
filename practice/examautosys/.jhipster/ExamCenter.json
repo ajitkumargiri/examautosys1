@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153943",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "exam_center",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ExamCenter",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "examCenter",
+      "ownerSide": true,
+      "relationshipName": "address",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "examApplicationForm",
+      "otherEntityRelationshipName": "examCenter",
+      "relationshipName": "examApplicationForm",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "exam",
+      "otherEntityRelationshipName": "examCenter",
+      "relationshipName": "exam",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

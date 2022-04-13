@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="student">
+      <h2 data-cy="studentDetailsHeading"><span>Student</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ student.id }}</span>
+        </dd>
+        <dt><span>Reg Number</span></dt>
+        <dd>
+          <span>{{ student.regNumber }}</span>
+        </dd>
+        <dt><span>First Name</span></dt>
+        <dd>
+          <span>{{ student.firstName }}</span>
+        </dd>
+        <dt><span>Middle Name</span></dt>
+        <dd>
+          <span>{{ student.middleName }}</span>
+        </dd>
+        <dt><span>Last Name</span></dt>
+        <dd>
+          <span>{{ student.lastName }}</span>
+        </dd>
+        <dt><span>Dob</span></dt>
+        <dd>
+          <span>{{ student.dob | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Father Name</span></dt>
+        <dd>
+          <span>{{ student.fatherName }}</span>
+        </dd>
+        <dt><span>Mother Name</span></dt>
+        <dd>
+          <span>{{ student.motherName }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ student.email }}</span>
+        </dd>
+        <dt><span>Mobile Number</span></dt>
+        <dd>
+          <span>{{ student.mobileNumber }}</span>
+        </dd>
+        <dt><span>Nationality</span></dt>
+        <dd>
+          <span>{{ student.nationality }}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+          <span>{{ student.gender }}</span>
+        </dd>
+        <dt><span>Religion</span></dt>
+        <dd>
+          <span>{{ student.religion }}</span>
+        </dd>
+        <dt><span>Catagory</span></dt>
+        <dd>
+          <span>{{ student.catagory }}</span>
+        </dd>
+        <dt><span>Maritial Status</span></dt>
+        <dd>
+          <span>{{ student.maritialStatus }}</span>
+        </dd>
+        <dt><span>Adhar Number</span></dt>
+        <dd>
+          <span>{{ student.adharNumber }}</span>
+        </dd>
+        <dt><span>Blood Group</span></dt>
+        <dd>
+          <span>{{ student.bloodGroup }}</span>
+        </dd>
+        <dt><span>Father Mobile Number</span></dt>
+        <dd>
+          <span>{{ student.fatherMobileNumber }}</span>
+        </dd>
+        <dt><span>Father Email Id</span></dt>
+        <dd>
+          <span>{{ student.fatherEmailId }}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+          <div *ngIf="student.image">
+            <a (click)="openFile(student.image, student.imageContentType)">
+              <img [src]="'data:' + student.imageContentType + ';base64,' + student.image" style="max-width: 100%" alt="student image" />
+            </a>
+            {{ student.imageContentType }}, {{ byteSize(student.image) }}
+          </div>
+        </dd>
+        <dt><span>Signature</span></dt>
+        <dd>
+          <div *ngIf="student.signature">
+            <a (click)="openFile(student.signature, student.signatureContentType)">
+              <img
+                [src]="'data:' + student.signatureContentType + ';base64,' + student.signature"
+                style="max-width: 100%"
+                alt="student image"
+              />
+            </a>
+            {{ student.signatureContentType }}, {{ byteSize(student.signature) }}
+          </div>
+        </dd>
+        <dt><span>Adhar</span></dt>
+        <dd>
+          <div *ngIf="student.adhar">
+            <a (click)="openFile(student.adhar, student.adharContentType)">open</a>
+            {{ student.adharContentType }}, {{ byteSize(student.adhar) }}
+          </div>
+        </dd>
+        <dt><span>Academic Batch</span></dt>
+        <dd>
+          <div *ngIf="student.academicBatch">
+            <a [routerLink]="['/academic-batch', student.academicBatch?.id, 'view']">{{ student.academicBatch?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/student', student.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

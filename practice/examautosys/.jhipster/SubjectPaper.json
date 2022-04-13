@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153942",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "subject_paper",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "SubjectPaperType",
+      "fieldValues": "PRACTICAL (Practical),THEORY (Theory),PROJECT_WORK (ProjectWork)"
+    },
+    {
+      "fieldName": "fullMark",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "passMark",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SubjectPaper",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "session",
+      "otherEntityRelationshipName": "subjectPaper",
+      "relationshipName": "session",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153937",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "session",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Session",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "exam",
+      "otherEntityRelationshipName": "session",
+      "relationshipName": "exam",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "subjectPaper",
+      "otherEntityRelationshipName": "session",
+      "relationshipName": "subjectPaper",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "academicBatch",
+      "otherEntityRelationshipName": "session",
+      "relationshipName": "academicBatch",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

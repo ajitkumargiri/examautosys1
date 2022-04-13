@@ -1,0 +1,198 @@
+<div>
+  <h2 id="page-heading" data-cy="ExamApplicationFormHeading">
+    <span>Exam Application Forms</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-exam-application-form"
+        [routerLink]="['/exam-application-form/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Exam Application Form </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="examApplicationForms?.length === 0">
+    <span>No examApplicationForms found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="examApplicationForms && examApplicationForms.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="regNumber"><span>Reg Number</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="firstName"><span>First Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="middleName"><span>Middle Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="lastName"><span>Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dob"><span>Dob</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fatherName"><span>Father Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="mobileNumber"><span>Mobile Number</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nationality"><span>Nationality</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="gender"><span>Gender</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="religion"><span>Religion</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adharNumber"><span>Adhar Number</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="bloodGroup"><span>Blood Group</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isApproved"><span>Is Approved</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="catagory"><span>Catagory</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="identityType"><span>Identity Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="identityNumber"><span>Identity Number</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="image"><span>Image</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="signature"><span>Signature</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adhar"><span>Adhar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="imagePath"><span>Image Path</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="signPath"><span>Sign Path</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adharPath"><span>Adhar Path</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="correspondingAddress.id"><span>Corresponding Address</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="student.id"><span>Student</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="exam.id"><span>Exam</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="examCenter.id"><span>Exam Center</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let examApplicationForm of examApplicationForms; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/exam-application-form', examApplicationForm.id, 'view']">{{ examApplicationForm.id }}</a>
+          </td>
+          <td>{{ examApplicationForm.regNumber }}</td>
+          <td>{{ examApplicationForm.firstName }}</td>
+          <td>{{ examApplicationForm.middleName }}</td>
+          <td>{{ examApplicationForm.lastName }}</td>
+          <td>{{ examApplicationForm.dob | formatMediumDatetime }}</td>
+          <td>{{ examApplicationForm.fatherName }}</td>
+          <td>{{ examApplicationForm.email }}</td>
+          <td>{{ examApplicationForm.mobileNumber }}</td>
+          <td>{{ examApplicationForm.nationality }}</td>
+          <td>{{ examApplicationForm.gender }}</td>
+          <td>{{ examApplicationForm.religion }}</td>
+          <td>{{ examApplicationForm.adharNumber }}</td>
+          <td>{{ examApplicationForm.bloodGroup }}</td>
+          <td>{{ examApplicationForm.isApproved }}</td>
+          <td>{{ examApplicationForm.catagory }}</td>
+          <td>{{ examApplicationForm.identityType }}</td>
+          <td>{{ examApplicationForm.identityNumber }}</td>
+          <td>
+            <a *ngIf="examApplicationForm.image" (click)="openFile(examApplicationForm.image, examApplicationForm.imageContentType)">
+              <img
+                [src]="'data:' + examApplicationForm.imageContentType + ';base64,' + examApplicationForm.image"
+                style="max-height: 30px"
+                alt="examApplicationForm image"
+              />
+            </a>
+            <span *ngIf="examApplicationForm.image"
+              >{{ examApplicationForm.imageContentType }}, {{ byteSize(examApplicationForm.image) }}</span
+            >
+          </td>
+          <td>
+            <a
+              *ngIf="examApplicationForm.signature"
+              (click)="openFile(examApplicationForm.signature, examApplicationForm.signatureContentType)"
+            >
+              <img
+                [src]="'data:' + examApplicationForm.signatureContentType + ';base64,' + examApplicationForm.signature"
+                style="max-height: 30px"
+                alt="examApplicationForm image"
+              />
+            </a>
+            <span *ngIf="examApplicationForm.signature"
+              >{{ examApplicationForm.signatureContentType }}, {{ byteSize(examApplicationForm.signature) }}</span
+            >
+          </td>
+          <td>
+            <a *ngIf="examApplicationForm.adhar" (click)="openFile(examApplicationForm.adhar, examApplicationForm.adharContentType)"
+              >open</a
+            >
+            <span *ngIf="examApplicationForm.adhar"
+              >{{ examApplicationForm.adharContentType }}, {{ byteSize(examApplicationForm.adhar) }}</span
+            >
+          </td>
+          <td>{{ examApplicationForm.imagePath }}</td>
+          <td>{{ examApplicationForm.signPath }}</td>
+          <td>{{ examApplicationForm.adharPath }}</td>
+          <td>
+            <div *ngIf="examApplicationForm.correspondingAddress">
+              <a [routerLink]="['/address', examApplicationForm.correspondingAddress?.id, 'view']">{{
+                examApplicationForm.correspondingAddress?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="examApplicationForm.student">
+              <a [routerLink]="['/student', examApplicationForm.student?.id, 'view']">{{ examApplicationForm.student?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="examApplicationForm.exam">
+              <a [routerLink]="['/exam', examApplicationForm.exam?.id, 'view']">{{ examApplicationForm.exam?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="examApplicationForm.examCenter">
+              <a [routerLink]="['/exam-center', examApplicationForm.examCenter?.id, 'view']">{{ examApplicationForm.examCenter?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/exam-application-form', examApplicationForm.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/exam-application-form', examApplicationForm.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(examApplicationForm)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="examApplicationForms && examApplicationForms.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

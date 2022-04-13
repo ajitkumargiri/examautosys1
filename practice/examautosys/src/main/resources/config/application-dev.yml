@@ -24,7 +24,7 @@ spring:
   devtools:
     restart:
       enabled: true
-      additional-exclude: static/**,.h2.server.properties
+      additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
@@ -32,21 +32,21 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/db/examautosys;DB_CLOSE_DELAY=-1
-    username: examautosys
-    password:
+    url: jdbc:sqlserver://localhost:1433;database=examautosys;encrypt=false;sslProtocol=TLSv1.2
+    username: sa
+    password: ajitgiri@123
     hikari:
       poolName: Hikari
       auto-commit: false
-  h2:
-    console:
-      # disable spring boot built-in h2-console since we start it manually with correct configuration
-      enabled: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
   jpa:
-    database-platform: tech.jhipster.domain.util.FixedH2Dialect
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev
   mail:
     host: localhost
     port: 25
@@ -72,7 +72,7 @@ spring:
         enabled: true
 
 server:
-  port: 8080
+  port: 8081
 
 # ===================================================================
 # JHipster specific properties
@@ -100,12 +100,12 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: OTg1OTFlYTI5YWNkZmU3ZDRjODczMjY3OTM1MTczNTNhOGFlODc1ZWNlNWI3MWY4YTdiNmJjOTY3NmRlOGM3MmZjZGM1NGQ3MmM4MjUyZGMxY2FjYmFiYzJiZGU1M2E4ZTEzNTlhMWMwY2Y1YmI5NWEwMDRlZTQyN2I5YzQzNzc=
+        base64-secret: NTk3MTVlYWYwYTVhZDlhYTU4NmU3MzQyZGRmZmZhOTllOTNmNjJlY2I0YWNkYmFjNjQ0NTE3OGE2YTIwMjg5NDhhMTNkMzZhYzI4MTRiODMzZTc5N2QxODA5Y2IxZWVmZDYyNWMxYzc4MWYzZGFhZjdmMmZiNzAzMDlhY2FmZjQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://127.0.0.1:8080
+    base-url: http://127.0.0.1:8081
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration

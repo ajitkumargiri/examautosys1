@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="exam">
+      <h2 data-cy="examDetailsHeading"><span>Exam</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ exam.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ exam.name }}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+          <span>{{ exam.type }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ exam.code }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ exam.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Start Time</span></dt>
+        <dd>
+          <span>{{ exam.startTime | formatMediumDate }}</span>
+        </dd>
+        <dt><span>End Time</span></dt>
+        <dd>
+          <span>{{ exam.endTime | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Corresponding Address</span></dt>
+        <dd>
+          <div *ngIf="exam.correspondingAddress">
+            <a [routerLink]="['/address', exam.correspondingAddress?.id, 'view']">{{ exam.correspondingAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Permanent Address</span></dt>
+        <dd>
+          <div *ngIf="exam.permanentAddress">
+            <a [routerLink]="['/address', exam.permanentAddress?.id, 'view']">{{ exam.permanentAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Session</span></dt>
+        <dd>
+          <div *ngIf="exam.session">
+            <a [routerLink]="['/session', exam.session?.id, 'view']">{{ exam.session?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/exam', exam.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

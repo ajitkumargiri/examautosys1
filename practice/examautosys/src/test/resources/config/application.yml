@@ -14,9 +14,6 @@
 # ===================================================================
 
 spring:
-  profiles:
-    # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
-    #active: testcontainers
   application:
     name: examautosys
 
@@ -100,7 +97,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: OTg1OTFlYTI5YWNkZmU3ZDRjODczMjY3OTM1MTczNTNhOGFlODc1ZWNlNWI3MWY4YTdiNmJjOTY3NmRlOGM3MmZjZGM1NGQ3MmM4MjUyZGMxY2FjYmFiYzJiZGU1M2E4ZTEzNTlhMWMwY2Y1YmI5NWEwMDRlZTQyN2I5YzQzNzc=
+        base64-secret: NTk3MTVlYWYwYTVhZDlhYTU4NmU3MzQyZGRmZmZhOTllOTNmNjJlY2I0YWNkYmFjNjQ0NTE3OGE2YTIwMjg5NDhhMTNkMzZhYzI4MTRiODMzZTc5N2QxODA5Y2IxZWVmZDYyNWMxYzc4MWYzZGFhZjdmMmZiNzAzMDlhY2FmZjQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
 # ===================================================================

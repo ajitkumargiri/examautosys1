@@ -1,0 +1,149 @@
+{
+  "applications": "*",
+  "changelogDate": "20220412153941",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "exam_application_form",
+  "fields": [
+    {
+      "fieldName": "regNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "middleName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dob",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "fatherName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "mobileNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nationality",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "MALE (Male),FEMALE (Female),OTHER (Other)"
+    },
+    {
+      "fieldName": "religion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adharNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "bloodGroup",
+      "fieldType": "BloodGroup",
+      "fieldValues": "O_POS (O+),O_NEG (O-),A_POS (A+),A_NEG (A-),B_POS (B+),B_NEG (B-),AB_POS (AB+),AB_NEG (AB-),NO_ANSWER (NA)"
+    },
+    {
+      "fieldName": "isApproved",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "catagory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "identityType",
+      "fieldType": "IdentityType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ADHAR (Adhar),PAN_CARD (Pancard),COLLEGE_ID_CARD (CollegeIDCard)"
+    },
+    {
+      "fieldName": "identityNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "signature",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "adhar",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "imagePath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "signPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adharPath",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ExamApplicationForm",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "examApplicationForm",
+      "ownerSide": true,
+      "relationshipName": "correspondingAddress",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "examApplicationForm",
+      "relationshipName": "student",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "exam",
+      "otherEntityRelationshipName": "applicationForm",
+      "relationshipName": "exam",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "examCenter",
+      "otherEntityRelationshipName": "examApplicationForm",
+      "relationshipName": "examCenter",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
