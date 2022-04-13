@@ -280,6 +280,16 @@
             <artifactId>jjwt-jackson</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>applicationinsights-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>applicationinsights-logging-logback</artifactId>
+            <version>2.3.1</version>
+        </dependency>
         <!-- Spring Cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -322,6 +332,7 @@
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -1244,6 +1255,33 @@
                                 </lifecycleMappingMetadata>
                             </configuration>
                         </plugin>
+                    <!--    <plugin>
+                            <groupId>com.microsoft.azure</groupId>
+                            <artifactId>azure-webapp-maven-plugin</artifactId>
+                            <version>2.5.0</version>
+                            <configuration>
+                                <schemaVersion>V2</schemaVersion>
+                                <resourceGroup>examautosys</resourceGroup>
+                                <appName>examautosys</appName>
+                                <region>East US</region>
+                                <pricingTier>B1</pricingTier>
+                                <runtime>
+                                    <os>linux</os>
+                                    <javaVersion>java11</javaVersion>
+                                    <webContainer>java11</webContainer>
+                                </runtime>
+                                <deployment>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/target</directory>
+                                            <includes>
+                                                <include>*.jar</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </deployment>
+                            </configuration>
+                        </plugin>-->
                     </plugins>
                 </pluginManagement>
             </build>

@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://localhost:1433;database=examautosys
-    username: SA
-    password: yourStrong(!)Password
+    url: jdbc:sqlserver://$AZ_DATABASE_NAME.database.windows.net:1433;database=examautosys;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    username: examautosys@$AZ_DATABASE_NAME
+    password: $AZ_SQL_SERVER_PASSWORD
     hikari:
       poolName: Hikari
       auto-commit: false
